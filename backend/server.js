@@ -37,10 +37,19 @@ connectDB();
 // Routes
 app.use('/api/auth', authRoutes);
 
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'YatraSaathi Backend API is running',
+    version: '1.0.0'
+  });
+});
+
 // Health check route
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'OK', 
+  res.status(200).json({
+    status: 'OK',
     message: 'YatraSaathi Backend API is running',
     timestamp: new Date().toISOString()
   });
@@ -48,9 +57,9 @@ app.get('/api/health', (req, res) => {
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ 
-    success: false, 
-    message: 'Route not found' 
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
   });
 });
 
